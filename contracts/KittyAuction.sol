@@ -1,3 +1,11 @@
+pragma solidity ^0.4.18;
+
+
+import {KittyBreeding} from "./KittyBreeding.sol";
+import {SaleClockAuction} from "./SaleClockAuction.sol";
+import {SiringClockAuction} from "./SiringClockAuction.sol";
+
+
 /// @title Handles creating auctions for sale and siring of kitties.
 ///  This wrapper of ReverseAuction exists only so that users can create
 ///  auctions with only one transaction.

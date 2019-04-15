@@ -1,3 +1,10 @@
+pragma solidity ^0.4.18;
+
+
+import {KittyOwnership} from "./KittyOwnership.sol";
+import {GeneScienceInterface} from "./GeneScienceInterface.sol";
+
+
 /// @title A facet of KittyCore that manages Kitty siring, gestation, and birth.
 /// @author Axiom Zen (https://www.axiomzen.co)
 /// @dev See the KittyCore contract documentation to understand how the various contract facets are arranged.

@@ -1,3 +1,8 @@
+pragma solidity ^0.4.18;
+
+
+import {ERC721} from "./ERC721.sol";
+
 // @title Auction Core
 /// @dev Contains models, variables, and internal methods for the auction.
 /// @notice We omit a fallback function to prevent accidental sends to this contract.

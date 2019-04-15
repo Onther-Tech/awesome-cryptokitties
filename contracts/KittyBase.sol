@@ -1,3 +1,11 @@
+pragma solidity ^0.4.18;
+
+
+import {KittyAccessControl} from "./KittyAccessControl.sol";
+import {SaleClockAuction} from "./SaleClockAuction.sol";
+import {SiringClockAuction} from "./SiringClockAuction.sol";
+
+
 /// @title Base contract for CryptoKitties. Holds all common structs, events and base variables.
 /// @author Axiom Zen (https://www.axiomzen.co)
 /// @dev See the KittyCore contract documentation to understand how the various contract facets are arranged.

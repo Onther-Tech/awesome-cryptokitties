@@ -1,3 +1,9 @@
+pragma solidity ^0.4.18;
+
+
+import {ClockAuction} from "./ClockAuction.sol";
+
+
 /// @title Reverse auction modified for siring
 /// @notice We omit a fallback function to prevent accidental sends to this contract.
 

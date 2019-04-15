@@ -1,3 +1,9 @@
+pragma solidity ^0.4.18;
+
+import {Pausable} from "./Pausable.sol";
+import {ClockAuctionBase} from "./ClockAuctionBase.sol";
+import {ERC721} from "./ERC721.sol";
+
 /// @title Clock auction for non-fungible tokens.
 /// @notice We omit a fallback function to prevent accidental sends to this contract.
 
