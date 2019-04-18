@@ -1,0 +1,59 @@
+{
+  "name": "KittyMinting is KittyAuction",
+  "description": "all functions related to creating kittens.\nPromoKitty, Gen0Kitty를 즉각 발행. Gen0Kitty는 즉각 경매에 올라감",
+  "structs": [],
+  "events": [],
+  "public-constants": [{
+      "name": "PROMO_CREATION_LIMIT",
+      "type": "uint256",
+      "value": "5000",
+      "description": "Limits the number of cats the contract owner can ever create."
+    },
+    {
+      "name": "GEN0_CREATION_LIMIT",
+      "type": "uint256",
+      "value": "45000",
+      "description": "Limits the number of cats the contract owner can ever create."
+    },
+    {
+      "name": "GEN0_STARTING_PRICE",
+      "type": "uint256",
+      "value": "10 finney",
+      "description": "Constants for gen0 auctions."
+    },
+    {
+      "name": "GEN0_AUCTION_DURATION",
+      "type": "uint256",
+      "value": "1 days",
+      "description": "Constants for gen0 auctions."
+    }
+  ],
+  "public-state-variables": [{
+      "name": "promoCreatedCount",
+      "type": "uint256",
+      "description": "Counts the number of cats the contract owner has created."
+    },
+    {
+      "name": "gen0CreatedCount",
+      "type": "uint256",
+      "description": "Counts the number of cats the contract owner has created."
+    }
+  ],
+  "external-functions": [
+    {
+      "name": "createPromoKitty(uint256 _genes, address _owner) external onlyCOO",
+      "description": "we can create promo kittens, up to a limit. Only callable by COO",
+      "params":[
+        {"name": "_genes", "type": "uint256", "description": "the encoded genes of the kitten to be created, any value is accepted"},
+        {"name": "_owner", "type": "address", "description": "the future owner of the created kittens. Default to contract COO"}
+      ]
+    },
+    {
+      "name": "createGen0Auction(uint256 _genes) external onlyCOO",
+      "description": "Creates a new gen0 kitty with the given genes and creates an auction for it.",
+      "params":[
+        {"name": "_genes", "type": "uint256"}
+      ]
+    }
+  ]
+}

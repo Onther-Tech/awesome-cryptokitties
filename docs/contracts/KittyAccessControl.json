@@ -1,0 +1,45 @@
+{
+  "name": "KittyAccessControl is Pausable",
+  "description": "A facet of KittyCore that manages special access privileges.",
+  "public-state-variables": [{
+      "name": "ceoAddress",
+      "type": "address"
+    },
+    {
+      "name": "cfoAddress",
+      "type": "address"
+    },
+    {
+      "name": "cooAddress",
+      "type": "address"
+    }
+  ],
+  "external-functions": [{
+      "name": "setCEO(address _newCEO) external onlyCEO",
+      "description": "Assigns a new address to act as the CEO. Only available to the current CEO.",
+      "params": [{
+        "name": "_newCEO",
+        "type": "address",
+        "description": "The address of the new CEO"
+      }]
+    },
+    {
+      "name": "setCFO(address _newCFO) external onlyCEO",
+      "description": "Assigns a new address to act as the CFO. Only available to the current CEO.",
+      "params": [{
+        "name": "_newCFO",
+        "type": "address",
+        "description": "The address of the new CFO"
+      }]
+    },
+    {
+      "name": "setCOO(address _newCOO) external onlyCEO",
+      "description": "Assigns a new address to act as the COO. Only available to the current CEO.",
+      "params": [{
+        "name": "_newCOO",
+        "type": "address",
+        "description": "The address of the new COO"
+      }]
+    }
+  ]
+}

@@ -1,0 +1,143 @@
+{
+  "name": "KittyBreeding is KittyOwnership",
+  "description": "A facet of KittyCore that manages Kitty siring, gestation, and birth.",
+  "structs": [],
+  "events": [{
+    "name": "Pregnant(address owner, uint256 matronId, uint256 sireId, uint256 cooldownEndBlock)",
+    "description": "The Pregnant event is fired when two cats successfully breed and the pregnancy timer begins for the matron.",
+    "params": [{
+        "name": "owner",
+        "type": "address"
+      },
+      {
+        "name": "matronId",
+        "type": "uint256"
+      },
+      {
+        "name": "sireId",
+        "type": "uint256"
+      },
+      {
+        "name": "cooldownEndBlock",
+        "type": "uint256"
+      }
+    ]
+  }],
+  "public-state-variables": [{
+      "name": "autoBirthFee",
+      "type": "uint256",
+      "description": "The minimum payment required to use breedWithAuto(). This fee goes towards the gas cost paid by whatever calls giveBirth(), and can be dynamically updated by the COO role as the gas price changes."
+    },
+    {
+      "name": "pregnantKitties",
+      "type": "uint256",
+      "description": "Keeps track of number of pregnant kitties."
+    },
+    {
+      "name": "geneScience",
+      "type": "GeneScienceInterface",
+      "description": "The address of the sibling contract that is used to implement the sooper-sekret genetic combination algorithm."
+    }
+  ],
+  "external-functions": [{
+      "name": "setGeneScienceAddress(address _address) external onlyCEO",
+      "description": "Update the address of the genetic contract, can only be called by the CEO.",
+      "params": [{
+        "name": "_address",
+        "type": "address",
+        "description": "An address of a GeneScience contract instance to be used from this point forward."
+      }]
+    },
+    {
+      "name": "setAutoBirthFee(uint256 val) external onlyCOO",
+      "description": "Updates the minimum payment required for calling giveBirthAuto(). Can only be called by the COO address. (This fee is used to offset the gas cost incurred by the autobirth daemon).",
+      "params": [{
+        "name": "val",
+        "type": "uint256"
+      }]
+    },
+    {
+      "name": "approveSiring(address _addr, uint256 _sireId)",
+      "description": "Grants approval to another user to sire with one of your Kitties.",
+      "params": [{
+          "name": "_addr",
+          "type": "address",
+          "description": "The address that will be able to sire with your Kitty. Set to address(0) to clear all siring approvals for this Kitty."
+        },
+        {
+          "name": "_sireId",
+          "type": "uint256",
+          "description": "A Kitty that you own that _addr will now be able to sire with."
+        }
+      ]
+    },
+    {
+      "name": "isReadyToBreed(uint256 _kittyId) public view returns (bool)",
+      "description": "Checks that a given kitten is able to breed (i.e. it is not pregnant or in the middle of a siring cooldown).",
+      "params": [{
+        "name": "_kittyId",
+        "type": "uint256",
+        "description": "reference the id of the kitten, any user can inquire about it"
+      }],
+      "returns": [{
+        "type": "bool"
+      }]
+    },
+    {
+      "name": "isPregnant(uint256 _kittyId) public view returns (bool)",
+      "description": "Checks whether a kitty is currently pregnant.",
+      "params": [{
+        "name": "_kittyId",
+        "type": "uint256",
+        "description": "reference the id of the kitten, any user can inquire about it"
+      }],
+      "returns": [{
+        "type": "bool"
+      }]
+    },
+    {
+      "name": "canBreedWith(uint256 _matronId, uint256 _sireId) external view returns (bool)",
+      "description": "Checks to see if two cats can breed together, including checks for ownership and siring approvals. Does NOT check that both cats are ready for breeding (i.e. breedWith could still fail until the cooldowns are finished).",
+      "params": [{
+        "name": "_matronId",
+        "type": "uint256",
+        "description": "The ID of the proposed matron."
+      }, {
+        "name": "_sireId",
+        "type": "uint256",
+        "description": "The ID of the proposed sire."
+      }],
+      "returns": [{
+        "type": "bool"
+      }]
+    },
+    {
+      "name": "breedWithAuto(uint256 _matronId, uint256 _sireId) external payable whenNotPaused",
+      "description": "Breed a Kitty you own (as matron) with a sire that you own, or for which you have previously been given Siring approval. Will either make your cat pregnant, or will fail entirely. Requires a pre-payment of the fee given out to the first caller of giveBirth()",
+      "params": [{
+        "name": "_matronId",
+        "type": "uint256",
+        "description": "The ID of the Kitty acting as matron (will end up pregnant if successful)"
+      }, {
+        "name": "_sireId",
+        "type": "uint256",
+        "description": "The ID of the Kitty acting as sire (will begin its siring cooldown if successful)"
+      }]
+    },
+    {
+      "name": "giveBirth(uint256 _matronId) external payable whenNotPaused",
+      "description": "Have a pregnant Kitty give birth!\nLooks at a given Kitty and, if pregnant and if the gestation period has passed, combines the genes of the two parents to create a new kitten. The new Kitty is assigned to the current owner of the matron. Upon successful completion, both the matron and the new kitten will be ready to breed again. Note that anyone can call this function (if they are willing to pay the gas!), but the new kitten always goes to the mother's owner.",
+      "params": [{
+        "name": "_matronId",
+        "type": "uint256",
+        "description": "A Kitty ready to give birth."
+      }],
+      "returns": [
+        {
+          "type": "uint256",
+      "description": "The Kitty ID of the new kitten."
+        }
+      ]
+    }
+  ]
+}

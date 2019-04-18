@@ -1,0 +1,113 @@
+{
+  "name": "ERC721",
+  "description": "Interface for contracts conforming to ERC-721: Non-Fungible Tokens",
+  "events": [
+    {
+      "name": "Transfer(address from, address to, uint256 tokenId)",
+      "params": [
+        {
+          "name": "from",
+          "type": "address "
+        },
+        {
+          "name": "to",
+          "type": "address "
+        },
+        {
+          "name": "tokenId",
+          "type": "uint256 "
+        }
+      ]
+    },
+    {
+      "name": "Approval(address owner, address approved, uint256 tokenId)",
+      "params": [
+        {
+          "name": "owner",
+          "type": "address "
+        },
+        {
+          "name": "approved",
+          "type": "address "
+        },
+        {
+          "name": "tokenId",
+          "type": "uint256 "
+        }
+      ]
+    }
+  ],
+  "external-functions": [
+    {
+      "name": "balanceOf(address _owner) public view returns (uint256 count)",
+      "params": [{
+        "name": "_owner",
+        "type": "address"
+      }],
+      "returns": [{
+        "name": "count",
+        "type": "uint256"
+      }]
+    },
+    {
+      "name": "transfer(address _to, uint256 _tokenId) external",
+      "params": [{
+        "name": "_to",
+        "type": "address"
+      }, {
+        "name": "_tokenId",
+        "type": "uint256"
+      }]
+    },
+    {
+      "name": "approve(address _to, uint256 _tokenId) external",
+      "params": [{
+        "name": "_to",
+        "type": "address"
+      }, {
+        "name": "_tokenId",
+        "type": "uint256"
+      }]
+    },
+    {
+      "name": "transferFrom(address _from, address _to, uint256 _tokenId) external",
+      "params": [{
+        "name": "_from",
+        "type": "address"
+      }, {
+        "name": "_to",
+        "type": "address"
+      }, {
+        "name": "_tokenId",
+        "type": "uint256"
+      }]
+    },
+    {
+      "name": "totalSupply() public view returns (uint)",
+      "returns": [{
+        "type": "uint256"
+      }]
+    },
+    {
+      "name": "ownerOf(uint256 _tokenId) external view returns (address owner)",
+      "params": [{
+        "name": "_tokenId",
+        "type": "uint256"
+      }],
+      "returns": [{
+        "name": "owner",
+        "type": "address"
+      }]
+    },
+    {
+      "name": "supportsInterface(bytes4 _interfaceID) external view returns (bool)",
+      "params": [{
+        "name": "_interfaceID",
+        "type": "bytes4"
+      }],
+      "returns": [{
+        "type": "bool"
+      }]
+    }
+  ]
+}

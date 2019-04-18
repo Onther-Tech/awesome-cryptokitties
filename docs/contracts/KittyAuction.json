@@ -1,0 +1,85 @@
+{
+  "name": "KittyAuction is KittyBreeding",
+  "description": "Handles creating auctions for sale and siring of kitties. This wrapper of ReverseAuction exists only so that users can create auctions with only one transaction.",
+  "external-functions": [{
+      "name": "setSaleAuctionAddress(address _address) external onlyCEO",
+      "description": "Sets the reference to the sale auction.",
+      "params": [{
+        "name": "_address",
+        "type": "address",
+        "description": "Address of sale contract."
+      }]
+    },
+    {
+      "name": "setSiringAuctionAddress(address _address) external onlyCEO",
+      "description": "Sets the reference to the siring auction.",
+      "params": [{
+        "name": "_address",
+        "type": "address",
+        "description": "Address of siring contract."
+      }]
+    },
+    {
+      "name": "function createSaleAuction(uint256 _kittyId, uint256 _startingPrice, uint256 _endingPrice, uint256 _duration) whenNotPaused",
+      "description": "Put a kitty up for auction. Does some ownership trickery to create auctions in one tx.",
+      "params": [{
+          "name": "_kittyId",
+          "type": "uint256"
+        },
+        {
+          "name": "_startingPrice",
+          "type": "uint256"
+        },
+        {
+          "name": "_endingPrice",
+          "type": "uint256"
+        },
+        {
+          "name": "_duration",
+          "type": "uint256"
+        }
+      ]
+    },
+    {
+      "name": "function createSiringAuction(uint256 _kittyId, uint256 _startingPrice, uint256 _endingPrice, uint256 _duration) whenNotPaused",
+      "description": "Put a kitty up for auction to be sire. Performs checks to ensure the kitty can be sired, then delegates to reverse auction.",
+      "params": [{
+          "name": "_kittyId",
+          "type": "uint256"
+        },
+        {
+          "name": "_startingPrice",
+          "type": "uint256"
+        },
+        {
+          "name": "_endingPrice",
+          "type": "uint256"
+        },
+        {
+          "name": "_duration",
+          "type": "uint256"
+        }
+      ]
+    },
+    {
+      "name": "bidOnSiringAuction(uint256 _sireId, uint256 _matronId) external payable whenNotPaused",
+      "description": "Completes a siring auction by bidding. Immediately breeds the winning matron with the sire on auction.",
+      "params": [{
+          "name": "_sireId",
+          "type": "uint256 ",
+          "description": "ID of the sire on auction."
+
+        },
+        {
+          "name": "_matronId",
+          "type": "uint256 ",
+          "description": "ID of the matron owned by the bidder."
+        }
+      ]
+    },
+    {
+      "name": "withdrawAuctionBalances() external onlyCLevel",
+      "description": "Transfers the balance of the sale auction contract to the KittyCore contract. We use two-step withdrawal to prevent two transfer calls in the auction bid function."
+    }
+  ]
+}

@@ -1,0 +1,97 @@
+{
+  "name": "ClockAuctionBase",
+  "description": "Contains models, variables, and internal methods for the auction.",
+  "structs": [
+    {
+      "name": "Auction",
+      "description": "Represents an auction on an NFT",
+      "members": [
+        {
+          "name": "seller",
+          "type": "address",
+          "description": "Current owner of NFT"
+        },
+        {
+          "name": "startingPrice",
+          "type": "uint128",
+          "description": "Price (in wei) at beginning of auction"
+        },
+        {
+          "name": "endingPrice",
+          "type": "uint128",
+          "description": "Price (in wei) at end of auction"
+        },
+        {
+          "name": "duration",
+          "type": "uint64",
+          "description": "Duration (in seconds) of auction"
+        },
+        {
+          "name": "startedAt",
+          "type": "uint64",
+          "description": "Time when auction started"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "AuctionCreated(uint256 tokenId, uint256 startingPrice, uint256 endingPrice, uint256 duration)",
+      "params": [
+        {
+          "name": "tokenId",
+          "type": "uint256"
+        },
+        {
+          "name": "startingPrice",
+          "type": "uint256"
+        },
+
+        {
+          "name": "endingPrice",
+          "type": "uint256"
+        },
+
+        {
+          "name": "duration",
+          "type": "uint256"
+        }
+      ]
+    },
+    {
+      "name": "AuctionSuccessful(uint256 tokenId, uint256 totalPrice, address winner)",
+      "params": [
+        {
+          "name": "tokenId",
+          "type": "uint256"
+        },
+        {
+          "name": "totalPrice",
+          "type": "uint256"
+        },
+        {
+          "name": "winner",
+          "type": "address"
+        }
+      ]
+    },
+    {
+      "name": "AuctionCancelled(uint256 tokenId)",
+      "params": [
+        {
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ]
+    }
+  ],
+  "external-functions": [
+
+  ],
+  "public-constants": [
+
+  ],
+  "public-state-variables": [
+
+  ]
+}

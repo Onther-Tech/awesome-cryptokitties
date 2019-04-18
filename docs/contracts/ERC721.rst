@@ -1,0 +1,148 @@
+
+ERC721
+======
+
+Interface for contracts conforming to ERC-721: Non-Fungible Tokens
+
+
+
+
+Events
+------
+
+Transfer(address from, address to, uint256 tokenId)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+
+Parameters
+""""""""""
+
+- ``from <address >``
+- ``to <address >``
+- ``tokenId <uint256 >``
+
+Approval(address owner, address approved, uint256 tokenId)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+
+Parameters
+""""""""""
+
+- ``owner <address >``
+- ``approved <address >``
+- ``tokenId <uint256 >``
+
+External Functions
+------------------
+
+
+balanceOf(address _owner) public view returns (uint256 count)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+
+Parameters
+""""""""""
+
+- ``_owner <address>``
+
+Returns
+"""""""
+
+- ``count <uint256>``
+
+transfer(address _to, uint256 _tokenId) external
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+
+Parameters
+""""""""""
+
+- ``_to <address>``
+- ``_tokenId <uint256>``
+
+Returns
+"""""""
+
+None
+
+approve(address _to, uint256 _tokenId) external
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+
+Parameters
+""""""""""
+
+- ``_to <address>``
+- ``_tokenId <uint256>``
+
+Returns
+"""""""
+
+None
+
+transferFrom(address _from, address _to, uint256 _tokenId) external
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+
+Parameters
+""""""""""
+
+- ``_from <address>``
+- ``_to <address>``
+- ``_tokenId <uint256>``
+
+Returns
+"""""""
+
+None
+
+totalSupply() public view returns (uint)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+
+Parameters
+""""""""""
+
+None
+
+Returns
+"""""""
+
+- ``<uint256>``
+
+ownerOf(uint256 _tokenId) external view returns (address owner)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+
+Parameters
+""""""""""
+
+- ``_tokenId <uint256>``
+
+Returns
+"""""""
+
+- ``owner <address>``
+
+supportsInterface(bytes4 _interfaceID) external view returns (bool)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+
+Parameters
+""""""""""
+
+- ``_interfaceID <bytes4>``
+
+Returns
+"""""""
+
+- ``<bool>``

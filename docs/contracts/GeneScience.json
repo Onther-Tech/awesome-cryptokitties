@@ -1,0 +1,68 @@
+{
+  "name": "GeneScience",
+  "description": "GeneScience implements the trait calculation for new kitties,",
+  "public-constants": [{
+    "name": "isGeneScience",
+    "type": "bool"
+  }],
+  "external-functions": [{
+      "name": "decode(uint256 _genes) public pure returns(uint8[])",
+      "description": "Parse a kitten gene and returns all of 12 \"trait stack\" that makes the characteristics",
+      "params": [{
+        "name": "_genes",
+        "type": "uint256",
+        "description": "kitten gene"
+      }],
+      "returns": [{
+        "type": "uint8[]",
+        "description": "the 48 traits that composes the genetic code, logically divided in stacks of 4, where only the first trait of each stack may express"
+      }]
+    },
+    {
+      "name": "encode(uint8[] _traits) public pure returns (uint256 _genes)",
+      "description": "Given an array of traits return the number that represent genes",
+      "params": [{
+        "name": "_traits",
+        "type": "uint8[]"
+      }],
+      "returns": [{
+        "name": "_genes",
+        "type": "uint256"
+      }]
+    },
+    {
+      "name": "expressingTraits(uint256 _genes) public pure returns(uint8[12])",
+      "description": "return the expressing traits",
+      "params": [{
+        "name": "_genes",
+        "type": "uint256",
+        "description": "the long number expressing cat genes"
+      }],
+      "returns": [{
+        "type": "uint8[12]"
+      }]
+    },
+    {
+      "name": "mixGenes(uint256 _genes1, uint256 _genes2, uint256 _targetBlock) public returns (uint256)",
+      "description": "the function as defined in the breeding contract - as defined in CK bible",
+      "params": [{
+          "name": "_genes1",
+          "type": "uint256"
+        },
+
+        {
+          "name": "_genes2",
+          "type": "uint256"
+        },
+
+        {
+          "name": "_targetBlock",
+          "type": "uint256"
+        }
+      ],
+      "returns": [{
+        "type": "uint256"
+      }]
+    }
+  ]
+}

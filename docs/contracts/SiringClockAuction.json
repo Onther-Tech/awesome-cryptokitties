@@ -1,0 +1,66 @@
+{
+  "name": "SiringClockAuction is ClockAuction",
+  "description": "Reverse auction modified for siring.\nWe omit a fallback function to prevent accidental sends to this contract.",
+  "structs": [],
+  "events": [],
+  "public-constants": [],
+  "public-state-variables": [{
+      "name": "isSiringClockAuction",
+      "type": "bool",
+      "description": "Sanity check that allows us to ensure that we are pointing to the right auction in our setSiringAuctionAddress() call.",
+      "value": "true"
+    }
+  ],
+  "external-functions": [{
+      "name": "SiringClockAuction(address _nftAddr, uint256 _cut) public ClockAuction(_nftAddr, _cut)",
+      "description": "Delegate constructor",
+      "params": [{
+          "name": "_nftAddr",
+          "type": "address"
+        },
+        {
+          "name": "_cut",
+          "type": "uint256"
+        }
+      ]
+    },
+    {
+      "name": "createAuction(uint256 _tokenId, uint256 _startingPrice, uint256 _endingPrice, uint256 _duration, address _seller) external",
+      "description": "Creates and begins a new auction. Since this function is wrapped, require sender to be KittyCore contract.",
+      "params": [{
+          "name": "_tokenId",
+          "type": "uint256",
+          "description": "ID of token to auction, sender must be owner."
+        },
+        {
+          "name": "_startingPrice",
+          "type": "uint256",
+          "description": "Price of item (in wei) at beginning of auction."
+        },
+        {
+          "name": "_endingPrice",
+          "type": "uint256",
+          "description": "Price of item (in wei) at end of auction."
+        },
+        {
+          "name": "_duration",
+          "type": "uint256",
+          "description": "Length of auction (in seconds)."
+        },
+        {
+          "name": "_seller",
+          "type": "address",
+          "description": "Seller, if not the message sender"
+        }
+      ]
+    },
+    {
+      "name": "bid(uint256 _tokenId) external payable",
+      "description": "Places a bid for siring. Requires the sender is the KittyCore contract because all bid methods should be wrapped. Also returns the kitty to the seller rather than the winner.",
+      "params": [{
+        "name": "_tokenId",
+        "type": "uint256"
+      }]
+    }
+  ]
+}

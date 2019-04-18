@@ -1,0 +1,79 @@
+{
+  "name": "KittyCore is KittyMinting",
+  "description": "CryptoKitties: Collectible, breedable, and oh-so-adorable cats on the Ethereum blockchain.\nThe main CryptoKitties contract, keeps track of kittens so they don't wander around and get lost.",
+  "structs": [],
+  "events": [],
+  "public-state-variables": [{
+    "name": "newContractAddress",
+    "type": "address",
+    "description": "Set in case the core contract is broken and an upgrade is required"
+  }],
+  "external-functions": [{
+      "name": "setNewAddress(address _v2Address) external onlyCEO whenPaused",
+      "description": "Used to mark the smart contract as upgraded, in case there is a serious breaking bug. This method does nothing but keep track of the new contract and emit a message indicating that the new address is set. It's up to clients of this contract to update to the new contract address in that case. (This contract will be paused indefinitely if such an upgrade takes place.)",
+      "params": [{
+        "name": "_v2Address",
+        "type": "address",
+        "description": "new address"
+      }]
+    },
+    {
+      "name": "getKitty(uint256 _id) external view returns (bool isGestating, bool isReady, uint256 cooldownIndex, uint256 nextActionAt, uint256 siringWithId, uint256 birthTime, uint256 matronId, uint256 sireId, uint256 generation, uint256 genes)",
+      "description": "Returns all the relevant information about a specific kitty.",
+      "params": [{
+        "name": "_id",
+        "type": "uint256",
+        "description": "The ID of the kitty of interest."
+      }],
+      "returns": [{
+          "name": "isGestating",
+          "type": "bool"
+        },
+        {
+          "name": "isReady",
+          "type": "bool"
+        },
+        {
+          "name": "cooldownIndex",
+          "type": "uint256"
+        },
+        {
+          "name": "nextActionAt",
+          "type": "uint256"
+        },
+        {
+          "name": "siringWithId",
+          "type": "uint256"
+        },
+        {
+          "name": "birthTime",
+          "type": "uint256"
+        },
+        {
+          "name": "matronId",
+          "type": "uint256"
+        },
+        {
+          "name": "sireId",
+          "type": "uint256"
+        },
+        {
+          "name": "generation",
+          "type": "uint256"
+        },
+        {
+          "name": "genes",
+          "type": "uint256"
+        }
+      ]
+    },
+    {
+      "name": "unpause() public onlyCEO whenPaused",
+      "description": "Override unpause so it requires all external contract addresses to be set before contract can be unpaused. Also, we can't have newContractAddress set either, because then the contract was upgraded."
+    },
+    {
+      "name": "withdrawBalance() external onlyCFO",
+      "description": "Allows the CFO to capture the balance available to the contract.\nAuction Fee와 breedWithAuto()로 인해 증가된 ETH. giveBirth의 보상으로 주기위한 잔액을 제외하고 남은 금액을 반환함."
+    }
+  ]
+}

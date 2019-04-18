@@ -1,0 +1,82 @@
+{
+  "name": "SaleClockAuction is ClockAuction",
+  "description": "Clock auction modified for sale of kitties\nWe omit a fallback function to prevent accidental sends to this contract.",
+  "structs": [],
+  "events": [],
+  "public-constants": [],
+  "public-state-variables": [{
+      "name": "isSaleClockAuction",
+      "type": "bool",
+      "description": "Sanity check that allows us to ensure that we are pointing to the right auction in our setSaleAuctionAddress() call.",
+      "value": "true"
+    },
+    {
+      "name": "gen0SaleCount",
+      "type": "uint256",
+      "description": "Tracks last 5 sale price of gen0 kitty sales"
+    },
+    {
+      "name": "lastGen0SalePrices",
+      "type": "uint256[5]",
+      "description": "Tracks last 5 sale price of gen0 kitty sales"
+    }
+  ],
+  "external-functions": [{
+      "name": "SaleClockAuction(address _nftAddr, uint256 _cut) public ClockAuction(_nftAddr, _cut)",
+      "description": "Delegate constructor",
+      "params": [{
+          "name": "_nftAddr",
+          "type": "address"
+        },
+        {
+          "name": "_cut",
+          "type": "uint256"
+        }
+      ]
+    },
+    {
+      "name": "createAuction(uint256 _tokenId, uint256 _startingPrice, uint256 _endingPrice, uint256 _duration, address _seller) external",
+      "description": "Creates and begins a new auction.",
+      "params": [{
+          "name": "_tokenId",
+          "type": "uint256",
+          "description": "ID of token to auction, sender must be owner."
+        },
+        {
+          "name": "_startingPrice",
+          "type": "uint256",
+          "description": "Price of item (in wei) at beginning of auction."
+        },
+        {
+          "name": "_endingPrice",
+          "type": "uint256",
+          "description": "Price of item (in wei) at end of auction."
+        },
+        {
+          "name": "_duration",
+          "type": "uint256",
+          "description": "Length of auction (in seconds)."
+        },
+        {
+          "name": "_seller",
+          "type": "address",
+          "description": "Seller, if not the message sender"
+        }
+      ]
+    },
+    {
+      "name": "bid(uint256 _tokenId) external payable",
+      "description": "Updates lastSalePrice if seller is the nft contract Otherwise, works the same as default bid method.",
+      "params": [{
+        "name": "_tokenId",
+        "type": "uint256"
+      }]
+    },
+    {
+      "name": "averageGen0SalePrice() external view returns (uint256)",
+      "returns": [{
+        "type": "uint256"
+      }]
+    }
+  ]
+}
