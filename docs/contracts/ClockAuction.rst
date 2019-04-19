@@ -107,8 +107,8 @@ Returns
 
 None
 
-getAuction(uint256 _tokenId) view
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+getAuction(uint256 _tokenId) view returns (address seller, uint256 startingPrice, uint256 endingPrice, uint256 duration, uint256 startedAt)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Returns auction info for an NFT on auction.
 
@@ -120,10 +120,14 @@ Parameters
 Returns
 """""""
 
-None
+- ``seller <address>``
+- ``startingPrice <uint256>``
+- ``endingPrice <uint256>``
+- ``duration <uint256>``
+- ``startedAt <uint256>``
 
-getCurrentPrice(uint256 _tokenId) view
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+getCurrentPrice(uint256 _tokenId) view returns (uint256)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Returns the current price of an auction.
 
@@ -135,4 +139,4 @@ Parameters
 Returns
 """""""
 
-None
+- ``<uint256>``
